@@ -92,7 +92,7 @@ if(empty($username_err)&& empty($password_err)&& empty($confirm_password_err)){
     unset($stmt);
     echo "ngiyafuna";
 }
-//close connection
+//close connectionzzzzz
 unset($pdo);
 
 
@@ -135,12 +135,15 @@ unset($pdo);
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" name ="username"aria-describedby="emailHelp" placeholder="Enter username." required>
                     <!--GENERATE USERNAME ERROR-->
-                    <small class="error"> Please enter &nbsp; <?php echo $username_err;?></small>
+                    <small class="error"> &nbsp; <?php echo $username_err;?></small>
                 </div>
 
             <!--PASSWORD DIV-->
                 <div class="form-group">
                     <label for="userpassword">Password</label>
+                    <br>
+                    <small id="password_help">Password must have atleast 1 number, 1 lowercase and 1 uppercase character. The password must be 6 characters.
+                </small><br>
                     <input type="password" class="form-control" id="userpassword" name="password"placeholder="Password" required>
                     <!--GENERATE PASSWORD ERROR-->
                     <small id="password_error" class="error"></small>

@@ -7,6 +7,7 @@ const search = document.querySelector('.search input')
 //     const html =    `
 //     <li class="list-group-item d-flex justify-content-between align-items-center">
 //     <span>${todo}</span>&nbsp<span>${dates}</span>
+//        <i class="fas fa-check"></i>
 //     <i class="far fa-trash-alt delete"></i>
 //     </li>`;
 
@@ -19,13 +20,14 @@ function GENTEMPLATE(todo,dates) {
     const html =    `
     <li class="list-group-item d-flex justify-content-between align-items-center">
     <span>${todo}</span>&nbsp<span>${dates}</span>
+    <i class="fas fa-check"></i>
     <i class="far fa-trash-alt delete"></i>
     </li>`;
 
     list.innerHTML  += html;
 };
 addform.addEventListener('submit', event =>{
-    event.preventDefault();
+    // event.preventDefault();
     const todo  =  addform.add.value.trim();
     const dates  = document.getElementById("duedate").value;
     console.log(todo);
@@ -44,10 +46,10 @@ addform.addEventListener('submit', event =>{
 list.addEventListener('click',event=>{
 
 // if the what we click on (target) has the class Delete execute the code in the if statement block.
- if(event.target.classList.contains('delete')){
-     event.target.parentElement.remove();
- }
-});
+//  if(event.target.classList.contains('delete')){
+//      event.target.parentElement.remove();
+//  }
+// });
 
 
 
@@ -73,3 +75,24 @@ search.addEventListener('keyup', () => {
 //filter function that will filter the list based onn what the user enters in the search input field. 
     filterTodos(term);
 });
+
+function delete_row(id)
+
+{
+ $.ajax
+ ({
+  type:'post',
+  url:'modify.php',
+  data:{
+   delete_row:'delete_task',
+   task_id:id,
+  },
+  success:function(response) {
+   if(response=="success")
+   {
+    let task_row=document.getElementById("listitem-"+id);
+    task_row.remove();
+   }
+  }
+ });
+}

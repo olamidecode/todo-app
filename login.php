@@ -126,24 +126,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <title>To Do Login</title>
 </head>
-<body>
+<body class="login-body">
     
     <div class="container mt-4">
         <div class="row">
         <div class="col-12 login-title text-center">
-            <h1>Nav To Do Login</h1>
+            <h1>Akin's online todo_app</h1>
+            <p>Hope u enjoy using this app.</p>
         </div>
         </div>
     </div>
     <div class="container login-page-container ">
-
-        <!-- <div class="container mt-4">
-            <div class="row">
-            <div class="col-12 login-title text-center">
-                <h1>Nav To Do Login</h1>
-            </div>
-            </div>
-        </div> -->
 
         <!--Login form-->
         <div class="container form-container">
@@ -162,29 +155,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <small id="emailHelp" class="form-text text-muted"><?php echo $password_err;?></small>
                 </div>
 
-                <div class="text-right p-t-13 p-b-23">
-						<span class="txt1">
-							Forgot
-						</span>
-
-						<a href="#" class="txt2">
-							Username / Password?
-						</a>
-                </div>
                 <button type="submit" class="btn btn-primary sign-in-btn">Sign in</button>
 
-                <a href="resetpass.php" class="btn btn-light">
-							Reset
+                <a href="resetpass.php" class="btn btn-light">Reset
                 </a>
 
 
                 <div class="flex-col-c p-t-170 p-b-40">
 						<span class="txt1 p-b-9">
-							Don’t have an account?
+							Don’t have an account yet?
 						</span>
 
 						<a href="register.php" class="txt3">
-							Sign up now
+							Pls sign up now
 						</a>
                 </div>
                 </form>

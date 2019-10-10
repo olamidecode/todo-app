@@ -6,5 +6,5 @@ define('DB_USERNAME','root');
 //name of the Server password
 define('DB_PASS','');
 //name of the database to connect - to_do_database. 
-define('DB_NAME','todo_app');
+define('DB_NAME','navtodo');
 ?>

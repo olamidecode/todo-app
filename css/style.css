@@ -1,6 +1,9 @@
 
 .body{
-    background:rgba(143, 163, 201, 0.61);
+    background:rgb(34, 105, 187);
+}
+.login-body{
+    background:rgb(34, 105, 187);
 }
 .login-page-container{
     min-height: 100vh;
@@ -11,7 +14,7 @@
 }
 .form-container{
     width:500px;
-    background-color: beige;
+    background-color: whitesmoke;
     border-radius: 5px;
     padding: 2rem;
 }

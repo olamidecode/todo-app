@@ -12,27 +12,34 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 //username
 $user_id = $_SESSION["id"];
  $username = $_SESSION["username"];
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--JQUERY-->
+    <script src="./js/jquery-3.4.1.js"></script>
+    
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <script src="https://kit.fontawesome.com/0cd95c0d58.js" crossorigin="anonymous"></script>
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="./css/stylewelcome.css">
-    <title>Document</title>
+
+    <title>Welcome <?php echo $username;?></title>
 </head>
 <body>
     <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Akin's online todo_app</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -58,65 +65,160 @@ $user_id = $_SESSION["id"];
 
 
     <div class="text-center text-light my-4">
-            <h1 class="mb-4">Welcome <?php echo $username;?>, here is your to do list...</h1>
-
+        <h1 class="mb-4">Hello <?php echo $username;?>, here are your list items</h1>
     </div>
 
     <div class="container">
-
         <div class="text-center text-light my-4">
-            
+            <h3 class="task-center form-header"> Search todo items</h3>
             <form class="search" action="">
                 <input class="form-control m-auto" type="text" name="search" placeholder="Search Todos">
             </form>
         </div>
+       
+        <div class="form-header my-3 d-flex justify-content-between">
+            <span>Tasks</span>
+            <span>Due Date</span>
+            <span>Delete/Edit Tasks</span>
+        </div>
+       
+
         <ul class="list-group todos mx-auto text-light">
-            <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span>Apply for Varsity</span>
-                <i class="far fa-trash-alt delete"></i>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span>Apply for Varsity</span>
-                <i class="far fa-trash-alt delete"></i>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span>Apply for Varsity</span>&nbsp;<span>29-09-2019</span>
-                <i class="far fa-trash-alt delete"></i>
-            </li> -->
+        <!--PHP CLASSS START-->
+            <?php
+            require 'config/conn.php';
+            $user = new Todo($pdo,$user_id);
+
+            $user->display();
+            ?>
+        <!--PHP CLASSS END-->
         </ul>
-        <div class="text-center">
+
+        <div class="text-center mt-5">
             <h3 class="form-header">Add Task</h3>
         </div>
-        <!--Add Task Form-->
-        <form class=" add form-inline mt-5 d-flex justify-content-between">
-        
-        <!-- <label class="sr-only" for="taskname">Name</label> -->
-        <input type="text" class="form-control mb-2 mr-sm-2" id="taskname" placeholder="Add Task" name="add">
 
-        <!-- <label class="sr-only" for="duedate">Due Date</label> -->
+        <!--Add Task Form-->
+        <form class=" add form-inline mt-5 d-flex justify-content-between" method="POST">
+
+        <input type="text" class="form-control mb-2 mr-sm-2" id="taskname" placeholder="Add Task" name="add" required>
+
         <div class="input-group mb-2 mr-sm-2">
             <div class="input-group-prepend">
             <div class="input-group-text">Date</div>
             </div>
-            
-            <input type="date" class="form-control" id="duedate" name ="date" placeholder="Enter task due date">
+            <input type="date" class="form-control" id="duedate" name ="date" placeholder="Enter task due date" required>
         </div>
 
-        <button type="submit" class="btn btn-primary mb-2" >Add Task</button>
+        <button type="submit" class="btn btn-dark mb-2" name="addTask" >Add Task</button>
         </form>
 
-
-        <!-- <form action="" class="add text-center my-4">
-            <label for="addToDo" class="text-light">Add a new todo...</label>
-            <input type="text" class="form-control m-auto" id="addToDo" name="add">
-            <label for="addDate" class="text-light">Due Date...</label>
-            <input type="date" class="form-control m-auto" id="addDate" name="Date">
-        </form> -->
-
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   <script src="./js/welcome.js"></script>
+    <script src="js/ajx.js"></script>
+   <!-- //<script src="./js/welcome.js"></script> -->
 </body>
 </html>
+
+
+<?php
+if(isset($_POST["addTask"])){
+    $user_id;
+    $task = $_POST['add'];
+    $date = $_POST['date'];
+    $user->insert($task,$date);
+    
+
+}
+?>
+
+<?php 
+ class Todo {
+    
+    public $pdo,$user_id,$task,$date;
+    function __construct($param_PDO,$param_user_id)
+
+    {
+        $this->pdo = $param_PDO;
+        $this->user_id = $param_user_id;
+        // $this->task = $param_task;
+        // $this->date = $param_date;
+    }
+
+    function insert($param_task,$param_date)
+
+    {
+        $this->task = $param_task;
+        $this->date = $param_date;
+       
+        //prepare insert statement
+        $sql = "INSERT INTO  list_table(list_item,class, due_date,user_id) VALUES (:list_item, :class, :due_date, :user_id)"; 
+
+        if($stmt = $this->pdo->prepare($sql))
+        {
+
+        //bind parameters to the prepared statements
+        $stmt->bindParam(":list_item",$param_list_item,PDO::PARAM_STR);
+        $stmt->bindParam("due_date",$param_date);
+        $stmt->bindParam(":user_id",$param_userID,PDO::PARAM_INT);
+        $stmt->bindParam(":class",$param_userID,PDO::PARAM_INT);
+
+        //set the parameters
+        $param_userID = $this->user_id;
+        $param_list_item = $this->task;
+        $param_due_date = $this->date;
+        // $param_class = $this->class;
+
+        
+
+        //execute the prepared statement
+        if($stmt->execute()){
+
+        }
+        else{
+            echo "didnt execute";
+        }
+        unset($stmt);
+        unset($pdo);
+        }
+        else{
+            echo  "Please press add task";
+        }
+    }
+
+    function display(){
+
+        include_once 'config/conn_class.php';
+
+        $sql = "SELECT * FROM list_table WHERE user_id=:user_id ORDER BY due_date ASC";
+
+        if($stmt = $pdo->prepare($sql)){
+            $stmt->bindParam(":user_id",$param_userID,PDO::PARAM_INT);
+
+            $param_userID = $this->user_id;
+            
+            if($stmt->execute()){
+                //fetch associative array
+            while($data = $stmt->fetch( PDO::FETCH_ASSOC )){
+
+                $task_id= $data["list_id"];
+                $task = $data['list_item'];
+                $date = $data['due_date'];
+                $status = $data["class"];
+
+                echo<<<END
+
+                <li id="listitem-$task_id" class="list-group-item d-flex justify-content-between align-items-center $status">
+               <span>$task</span>&nbsp;<span>$date</span></i><span><input type="submit" id="delete_button-$task_id" class="btn btn-dark fas delete" value="&#xf2ed" onclick="delete_row('$task_id')">  
+               <input type="submit" class="btn btn-dark fas check" value="&#xf00c" onclick="complete_task('$task_id')"></span>  </li>
+END;
+  
+               }
+            }
+            
+        }
+    }
+}
+?>

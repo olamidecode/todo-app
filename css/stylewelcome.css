@@ -1,5 +1,5 @@
 body{
-    background:#352f5b;
+    backgroung:#333333;
 }
 .container{
     max-width:700px;
@@ -16,13 +16,22 @@ input[type=text]:focus{
     max-width:600px;
 }
 .todos li{
-    background:#423a6f;
+    background: rgb(34, 105, 187);
 }
 
 
-
+.fa-input { 
+    font-family: "Font Awesome 5 Free", ‘Helvetica Neue’, Helvetica, Arial, sans-serif; 
+}
 .delete{
+    color:white;
     cursor:pointer;
+}
+.check{
+    color:white;
+}
+.complete{
+    background:rgba(60, 153, 72, 0.287)!important;
 }
 .filtered{
     display:none!important;
